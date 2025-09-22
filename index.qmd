@@ -1,0 +1,4 @@
+# Preface {.unnumbered}
+
+These are notes on ANOVA and ANCOVA. 
+This is work in progress, any typo is my responsability.  You can report it to monika.avila@unige.ch or monika.avilamarquez@gmail.com.

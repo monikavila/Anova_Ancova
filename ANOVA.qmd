@@ -1,0 +1,119 @@
+# ANOVA
+
+ANOVA (Analysis of Variance) is a statistical method used to compare the means of two or more groups by analyzing the variance. It was proposed by Ronald Fisher in 1918.
+
+ANOVA is a useful method for experimental data, in particular in completely randomized designs where we assume that experimental units are homogenous (@meier2022anova).
+
+With experimental data obtained from a completely randomized design, and experimental units that are homogeneous, we can use ANOVA to determine the effect of a factor on the dependent variable.
+
+Note: a completely randomized design is one in which we randomization is done without considering any further information. If the number of individuals per group is equal, the design is balanced (@meier2022anova).
+
+The main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.
+
+The statistic $F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}$, where $S^2_{m_g}$ represents the estimated variance of the group means ($m_g$), and $\sum_gS^2_g/G$ represents the estimated intra-group variance, $G$ the total number of groups.
+
+## Types d'ANOVA
+
+### Simple ANOVA
+
+It is an ANOVA with only one factor with non repeated measures.
+
+The main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.
+
+The historical interpretation is that we decompose the variance into variance between groups and variance within groups: 
+
+$$SS_{tot} = SS_{g} + SS_{resid}$$,
+where $SS_{tot}$ represents the total sum of squared residuals ($y_{ij}-m_{glob}$ with $m_{glob}$ equal to the global mean), $SS_g$ is equal to the sum of squared residuals between groups
+($m_g - m_{glob}$), and $SS_{resid}$ is equal to the sum of squared residuals within groups ($y_{ig}-m_g$).  Then, the F statistic is equal to $F = \frac{SS_g/(G-1)}{SS_{resid}/(N-G)}$. 
+The statistic $F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}$, where $S^2_{m_g}$ represents the estimated variance of the group means ($m_g$), and $\sum_gS^2_g/G$ represents the estimated intra-group variance, $G$ the total number of groups.
+
+## Assumptions of Simple or Single Factor ANOVA
+
+## Roadmap for a Simple ANOVA without repeated measures
+
+### Confront the theory to an experiment.
+
+### Experiment
+
+1.  Define the different treatment conditions (factors).
+2.  Randomize subjects to the different treatment conditions.
+3.  Perform the experiment.
+4.  Measure the dependent variable.
+
+Note: Repeated measures means that we use the same subject for the different conditions. This is preferred to using different individuals because it reduces variance.
+
+### State the hypothesis
+
+We set up the research question, which is traduced to a research hypothesis which is finally stated as a null hypothesis.
+
+The Null hypothesis is usually stated as the contrary of what we would like to show. For example: there is no effect.
+
+### Measure the dependent variable
+
+### Exploratoty analysis
+
+1.  Boxplot of the dependent variable by factor: it gives an idea of the differences between groups.
+
+### Obtain the test statistic
+
+We use the F statistic using the data obtained from the experiment.
+
+The test statistic should be able to show how long the sample is far from the null hypothesis.
+
+### Perform the test
+
+-   We obtain the sampling distribution of the test statistic under the null hypothesis. The distribution of the F statistic if data is normally distributed, and homoskedastic, the distribution is an F distribution with degrees of freedom equal to $G-1, N- G$.
+-   We obtain the p-value which is equal to the probability that the F statistic is greater than the observed one under the Null hypothesis $\mathbb{P}_{H_o}(F>F_{obs})$. If the p-value is lower than the significance level, then we reject the null hypothesis.
+
+## Recap of the inference procedure
+
+1.  Choose the significance level.
+
+2.  Operationalise the research hypothesis in order to obtain the alternative hypothesis.
+
+3.  Formulate the null hypothesis that corresponds to the alternative hypothesis.
+
+4.  Define the test statistic.
+
+5.  Obtain the sampling distribution of the test statistic under the null hypothesis.
+
+6.  Find the p-value of the observed test statistic.
+
+7.  Compare the p-value with the significance level chosen and make a decision.
+
+8. Interpretation of the result:
+ 
+ - Reject: "We reject the $H_o$" 
+ - No Reject: "We do not reject the $H_o$".  We never say "We accept the $H_o$".
+
+## Two types of errors
+
+### Type I error
+
+It is the probability of rejecting the null hypothesis when the null hypothesis is true.  It is a False Positive. 
+
+This type of error is more serious than Type II error, this is why we should protect the H_o. 
+
+$\alpha = \mathbb{P}_{H_o}(\text{Reject H_o} | \text{H_o is true})$
+
+### Type II error
+
+It is the probability of rejecting the alternative hypothesis when the alternative hypothesis is true. 
+
+$\beta = \mathbb{P}_{H_a}(\text{No reject of the H_o} | \text{H_1 is true})$
+
+### Power of the test
+
+The power of the test is the probability of rejection of the null hypothesis when the alternative hypothesis is true. 
+
+## The p-value 
+
+The p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis.  It is not the probability that the null hypothesis is true. 
+
+## Sampling distribution vs Population distribution
+
+The sampling distribution is the probability distribution of a statistic that results from obtaining many samples of the same size obtained from the population.
+
+The population distribution is the distribution of the population. 
+
+

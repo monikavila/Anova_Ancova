@@ -1,0 +1,172 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Anova_Ancova",
+    "section": "",
+    "text": "Preface\nThese are notes on ANOVA and ANCOVA. This is work in progress, any typo is my responsability. You can report it to monika.avila@unige.ch or monika.avilamarquez@gmail.com.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "These are notes on ANOVA and ANCOVA. This is work in progress, any typo is my responsability. You can report it to monika.avila@unige.ch or monika.avilamarquez@gmail.com.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Anova_Ancova",
+    "section": "",
+    "text": "These are notes on ANOVA and ANCOVA. This is work in progress, any typo is my responsability. You can report it to monika.avila@unige.ch or monika.avilamarquez@gmail.com.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>summary.html</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html",
+    "href": "ANOVA.html",
+    "title": "3  ANOVA",
+    "section": "",
+    "text": "3.1 Types d’ANOVA",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#roadmap-for-an-anova-without-repeated-measures",
+    "href": "ANOVA.html#roadmap-for-an-anova-without-repeated-measures",
+    "title": "3  ANOVA",
+    "section": "3.2 Roadmap for an ANOVA without repeated measures",
+    "text": "3.2 Roadmap for an ANOVA without repeated measures\n\n3.2.1 Experiment\n\nDefine the different treatment conditions (factors).\nRandomize subjects to the different treatment conditions.\nPerform the experiment.\nMeasure the dependent variable.\n\nNote: Repeated measures means that we use the same subject for the different conditions. This is preferred to using different individuals because it reduces variance.\n\n\n3.2.2 State the hypothesis\n\n\n3.2.3 Measure the dependent variable\n\n\n3.2.4 Exploratoty analysis\n\nBoxplot of the dependent variable by factor: it gives an idea of the differences between groups.\n\n\n\n3.2.5 Obtain the test statistic\nWe use the F statistic using the data obtained from the experiment.\nThe test statistic should be able to show how long the sample is far from the null hypothesis.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#types-danova",
+    "href": "ANOVA.html#types-danova",
+    "title": "3  ANOVA",
+    "section": "",
+    "text": "3.1.1 Simple ANOVA\nIt is an ANOVA with only one factor with non repeated measures.\nThe main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.\nThe historical interpretation is that we decompose the variance into variance between groups and variance within groups:\n\\[SS_{tot} = SS_{g} + SS_{resid}\\], where \\(SS_{tot}\\) represents the total sum of squared residuals (\\(y_{ij}-m_{glob}\\) with \\(m_{glob}\\) equal to the global mean), \\(SS_g\\) is equal to the sum of squared residuals between groups (\\(m_g - m_{glob}\\)), and \\(SS_{resid}\\) is equal to the sum of squared residuals within groups (\\(y_{ig}-m_g\\)). Then, the F statistic is equal to \\(F = \\frac{SS_g/(G-1)}{SS_{resid}/(N-G)}\\). The statistic \\(F = \\frac{n * S^2_{m_g}}{\\sum_gS^2_g/G}\\), where \\(S^2_{m_g}\\) represents the estimated variance of the group means (\\(m_g\\)), and \\(\\sum_gS^2_g/G\\) represents the estimated intra-group variance, \\(G\\) the total number of groups.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#assumptions-of-simple-anova",
+    "href": "ANOVA.html#assumptions-of-simple-anova",
+    "title": "3  ANOVA",
+    "section": "3.2 Assumptions of Simple ANOVA",
+    "text": "3.2 Assumptions of Simple ANOVA",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#roadmap-for-a-simple-anova-without-repeated-measures",
+    "href": "ANOVA.html#roadmap-for-a-simple-anova-without-repeated-measures",
+    "title": "3  ANOVA",
+    "section": "3.3 Roadmap for a Simple ANOVA without repeated measures",
+    "text": "3.3 Roadmap for a Simple ANOVA without repeated measures\n\n3.3.1 Confront the theory to an experiment.\n\n\n3.3.2 Experiment\n\nDefine the different treatment conditions (factors).\nRandomize subjects to the different treatment conditions.\nPerform the experiment.\nMeasure the dependent variable.\n\nNote: Repeated measures means that we use the same subject for the different conditions. This is preferred to using different individuals because it reduces variance.\n\n\n3.3.3 State the hypothesis\nWe set up the research question, which is traduced to a research hypothesis which is finally stated as a null hypothesis.\nThe Null hypothesis is usually stated as the contrary of what we would like to show. For example: there is no effect.\n\n\n3.3.4 Measure the dependent variable\n\n\n3.3.5 Exploratoty analysis\n\nBoxplot of the dependent variable by factor: it gives an idea of the differences between groups.\n\n\n\n3.3.6 Obtain the test statistic\nWe use the F statistic using the data obtained from the experiment.\nThe test statistic should be able to show how long the sample is far from the null hypothesis.\n\n\n3.3.7 Perform the test\n\nWe obtain the sampling distribution of the test statistic under the null hypothesis. The distribution of the F statistic if data is normally distributed, and homoskedastic, the distribution is an F distribution with degrees of freedom equal to \\(G-1, N- G\\).\nWe obtain the p-value which is equal to the probability that the F statistic is greater than the observed one under the Null hypothesis \\(\\mathbb{P}_{H_o}(F&gt;F_{obs})\\). If the p-value is lower than the significance level, then we reject the null hypothesis.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#assumptions-of-simple-or-single-factor-anova",
+    "href": "ANOVA.html#assumptions-of-simple-or-single-factor-anova",
+    "title": "3  ANOVA",
+    "section": "3.2 Assumptions of Simple or Single Factor ANOVA",
+    "text": "3.2 Assumptions of Simple or Single Factor ANOVA",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#recap-of-inference-procedure",
+    "href": "ANOVA.html#recap-of-inference-procedure",
+    "title": "3  ANOVA",
+    "section": "3.4 Recap of inference procedure",
+    "text": "3.4 Recap of inference procedure\n\nChoose the significance level.\nOperationalise the research hypothesis in order to obtain the alternative hypothesis.\nFormulate the null hypothesis that corresponds to the alternative hypothesis.\nDefine the test statistic.\nObtain the sampling distribution of the test statistic under the null hypothesis.\nFind the p-value of the observed test statistic.\nCompare the p-value with the significance level chosen and make a decision.\n\n\n\n\n\nMeier, Lukas. 2022. ANOVA and Mixed Models: A Short Introduction Using r. Chapman; Hall/CRC.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#recap-of-the-inference-procedure",
+    "href": "ANOVA.html#recap-of-the-inference-procedure",
+    "title": "3  ANOVA",
+    "section": "3.4 Recap of the inference procedure",
+    "text": "3.4 Recap of the inference procedure\n\nChoose the significance level.\nOperationalise the research hypothesis in order to obtain the alternative hypothesis.\nFormulate the null hypothesis that corresponds to the alternative hypothesis.\nDefine the test statistic.\nObtain the sampling distribution of the test statistic under the null hypothesis.\nFind the p-value of the observed test statistic.\nCompare the p-value with the significance level chosen and make a decision.\nInterpretation of the result:\n\n\nReject: “We reject the \\(H_o\\)”\nNo Reject: “We do not reject the \\(H_o\\)”. We never say “We accept the \\(H_o\\)”.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#two-types-of-errors",
+    "href": "ANOVA.html#two-types-of-errors",
+    "title": "3  ANOVA",
+    "section": "3.5 Two types of errors",
+    "text": "3.5 Two types of errors\n\n3.5.1 Type I error\nIt is the probability of rejecting the null hypothesis when the null hypothesis is true. It is a False Positive.\nThis type of error is more serious than Type II error, this is why we should protect the H_o.\n\\(\\alpha = \\mathbb{P}_{H_o}(\\text{Reject H_o} | \\text{H_o is true})\\)\n\n\n3.5.2 Type II error\nIt is the probability of rejecting the alternative hypothesis when the alternative hypothesis is true.\n\\(\\beta = \\mathbb{P}_{H_a}(\\text{No reject of the H_o} | \\text{H_1 is true})\\)\n\n\n3.5.3 Power of the test\nThe power of the test is the probability of rejection of the null hypothesis when the alternative hypothesis is true.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#p-value",
+    "href": "ANOVA.html#p-value",
+    "title": "3  ANOVA",
+    "section": "3.6 p-value",
+    "text": "3.6 p-value\nThe p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis. It is not the probability that the null hypothesis is true.\n\n\n\n\nMeier, Lukas. 2022. ANOVA and Mixed Models: A Short Introduction Using r. Chapman; Hall/CRC.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#the-p-value",
+    "href": "ANOVA.html#the-p-value",
+    "title": "3  ANOVA",
+    "section": "3.6 The p-value",
+    "text": "3.6 The p-value\nThe p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis. It is not the probability that the null hypothesis is true.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#some-notes",
+    "href": "ANOVA.html#some-notes",
+    "title": "3  ANOVA",
+    "section": "3.7 Some notes",
+    "text": "3.7 Some notes\nThe sampling distribution is the is the probability distribution of a statistic that results from obtaining many samples of the same size obtained from the population.\n\n\n\n\nMeier, Lukas. 2022. ANOVA and Mixed Models: A Short Introduction Using r. Chapman; Hall/CRC.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  },
+  {
+    "objectID": "ANOVA.html#sampling-distribution-vs-population-distribution",
+    "href": "ANOVA.html#sampling-distribution-vs-population-distribution",
+    "title": "3  ANOVA",
+    "section": "3.7 Sampling distribution vs Population distribution",
+    "text": "3.7 Sampling distribution vs Population distribution\nThe sampling distribution is the probability distribution of a statistic that results from obtaining many samples of the same size obtained from the population.\nThe population distribution is the distribution of the population.\n\n\n\n\nMeier, Lukas. 2022. ANOVA and Mixed Models: A Short Introduction Using r. Chapman; Hall/CRC.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>ANOVA</span>"
+    ]
+  }
+]

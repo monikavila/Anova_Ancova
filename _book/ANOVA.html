@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; ANOVA – Anova_Ancova</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./summary.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ANOVA.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ANOVA</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Anova_Ancova</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">summary.html</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ANOVA.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ANOVA</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#types-danova" id="toc-types-danova" class="nav-link active" data-scroll-target="#types-danova"><span class="header-section-number">3.1</span> Types d’ANOVA</a>
+  <ul class="collapse">
+  <li><a href="#simple-anova" id="toc-simple-anova" class="nav-link" data-scroll-target="#simple-anova"><span class="header-section-number">3.1.1</span> Simple ANOVA</a></li>
+  </ul></li>
+  <li><a href="#assumptions-of-simple-or-single-factor-anova" id="toc-assumptions-of-simple-or-single-factor-anova" class="nav-link" data-scroll-target="#assumptions-of-simple-or-single-factor-anova"><span class="header-section-number">3.2</span> Assumptions of Simple or Single Factor ANOVA</a></li>
+  <li><a href="#roadmap-for-a-simple-anova-without-repeated-measures" id="toc-roadmap-for-a-simple-anova-without-repeated-measures" class="nav-link" data-scroll-target="#roadmap-for-a-simple-anova-without-repeated-measures"><span class="header-section-number">3.3</span> Roadmap for a Simple ANOVA without repeated measures</a>
+  <ul class="collapse">
+  <li><a href="#confront-the-theory-to-an-experiment." id="toc-confront-the-theory-to-an-experiment." class="nav-link" data-scroll-target="#confront-the-theory-to-an-experiment."><span class="header-section-number">3.3.1</span> Confront the theory to an experiment.</a></li>
+  <li><a href="#experiment" id="toc-experiment" class="nav-link" data-scroll-target="#experiment"><span class="header-section-number">3.3.2</span> Experiment</a></li>
+  <li><a href="#state-the-hypothesis" id="toc-state-the-hypothesis" class="nav-link" data-scroll-target="#state-the-hypothesis"><span class="header-section-number">3.3.3</span> State the hypothesis</a></li>
+  <li><a href="#measure-the-dependent-variable" id="toc-measure-the-dependent-variable" class="nav-link" data-scroll-target="#measure-the-dependent-variable"><span class="header-section-number">3.3.4</span> Measure the dependent variable</a></li>
+  <li><a href="#exploratoty-analysis" id="toc-exploratoty-analysis" class="nav-link" data-scroll-target="#exploratoty-analysis"><span class="header-section-number">3.3.5</span> Exploratoty analysis</a></li>
+  <li><a href="#obtain-the-test-statistic" id="toc-obtain-the-test-statistic" class="nav-link" data-scroll-target="#obtain-the-test-statistic"><span class="header-section-number">3.3.6</span> Obtain the test statistic</a></li>
+  <li><a href="#perform-the-test" id="toc-perform-the-test" class="nav-link" data-scroll-target="#perform-the-test"><span class="header-section-number">3.3.7</span> Perform the test</a></li>
+  </ul></li>
+  <li><a href="#recap-of-the-inference-procedure" id="toc-recap-of-the-inference-procedure" class="nav-link" data-scroll-target="#recap-of-the-inference-procedure"><span class="header-section-number">3.4</span> Recap of the inference procedure</a></li>
+  <li><a href="#two-types-of-errors" id="toc-two-types-of-errors" class="nav-link" data-scroll-target="#two-types-of-errors"><span class="header-section-number">3.5</span> Two types of errors</a>
+  <ul class="collapse">
+  <li><a href="#type-i-error" id="toc-type-i-error" class="nav-link" data-scroll-target="#type-i-error"><span class="header-section-number">3.5.1</span> Type I error</a></li>
+  <li><a href="#type-ii-error" id="toc-type-ii-error" class="nav-link" data-scroll-target="#type-ii-error"><span class="header-section-number">3.5.2</span> Type II error</a></li>
+  <li><a href="#power-of-the-test" id="toc-power-of-the-test" class="nav-link" data-scroll-target="#power-of-the-test"><span class="header-section-number">3.5.3</span> Power of the test</a></li>
+  </ul></li>
+  <li><a href="#the-p-value" id="toc-the-p-value" class="nav-link" data-scroll-target="#the-p-value"><span class="header-section-number">3.6</span> The p-value</a></li>
+  <li><a href="#sampling-distribution-vs-population-distribution" id="toc-sampling-distribution-vs-population-distribution" class="nav-link" data-scroll-target="#sampling-distribution-vs-population-distribution"><span class="header-section-number">3.7</span> Sampling distribution vs Population distribution</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ANOVA</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>ANOVA (Analysis of Variance) is a statistical method used to compare the means of two or more groups by analyzing the variance. It was proposed by Ronald Fisher in 1918.</p>
+<p>ANOVA is a useful method for experimental data, in particular in completely randomized designs where we assume that experimental units are homogenous (<span class="citation" data-cites="meier2022anova">Meier (<a href="references.html#ref-meier2022anova" role="doc-biblioref">2022</a>)</span>).</p>
+<p>With experimental data obtained from a completely randomized design, and experimental units that are homogeneous, we can use ANOVA to determine the effect of a factor on the dependent variable.</p>
+<p>Note: a completely randomized design is one in which we randomization is done without considering any further information. If the number of individuals per group is equal, the design is balanced (<span class="citation" data-cites="meier2022anova">Meier (<a href="references.html#ref-meier2022anova" role="doc-biblioref">2022</a>)</span>).</p>
+<p>The main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.</p>
+<p>The statistic <span class="math inline">\(F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}\)</span>, where <span class="math inline">\(S^2_{m_g}\)</span> represents the estimated variance of the group means (<span class="math inline">\(m_g\)</span>), and <span class="math inline">\(\sum_gS^2_g/G\)</span> represents the estimated intra-group variance, <span class="math inline">\(G\)</span> the total number of groups.</p>
+<section id="types-danova" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="types-danova"><span class="header-section-number">3.1</span> Types d’ANOVA</h2>
+<section id="simple-anova" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="simple-anova"><span class="header-section-number">3.1.1</span> Simple ANOVA</h3>
+<p>It is an ANOVA with only one factor with non repeated measures.</p>
+<p>The main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.</p>
+<p>The historical interpretation is that we decompose the variance into variance between groups and variance within groups:</p>
+<p><span class="math display">\[SS_{tot} = SS_{g} + SS_{resid}\]</span>, where <span class="math inline">\(SS_{tot}\)</span> represents the total sum of squared residuals (<span class="math inline">\(y_{ij}-m_{glob}\)</span> with <span class="math inline">\(m_{glob}\)</span> equal to the global mean), <span class="math inline">\(SS_g\)</span> is equal to the sum of squared residuals between groups (<span class="math inline">\(m_g - m_{glob}\)</span>), and <span class="math inline">\(SS_{resid}\)</span> is equal to the sum of squared residuals within groups (<span class="math inline">\(y_{ig}-m_g\)</span>). Then, the F statistic is equal to <span class="math inline">\(F = \frac{SS_g/(G-1)}{SS_{resid}/(N-G)}\)</span>. The statistic <span class="math inline">\(F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}\)</span>, where <span class="math inline">\(S^2_{m_g}\)</span> represents the estimated variance of the group means (<span class="math inline">\(m_g\)</span>), and <span class="math inline">\(\sum_gS^2_g/G\)</span> represents the estimated intra-group variance, <span class="math inline">\(G\)</span> the total number of groups.</p>
+</section>
+</section>
+<section id="assumptions-of-simple-or-single-factor-anova" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="assumptions-of-simple-or-single-factor-anova"><span class="header-section-number">3.2</span> Assumptions of Simple or Single Factor ANOVA</h2>
+</section>
+<section id="roadmap-for-a-simple-anova-without-repeated-measures" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="roadmap-for-a-simple-anova-without-repeated-measures"><span class="header-section-number">3.3</span> Roadmap for a Simple ANOVA without repeated measures</h2>
+<section id="confront-the-theory-to-an-experiment." class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="confront-the-theory-to-an-experiment."><span class="header-section-number">3.3.1</span> Confront the theory to an experiment.</h3>
+</section>
+<section id="experiment" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="experiment"><span class="header-section-number">3.3.2</span> Experiment</h3>
+<ol type="1">
+<li>Define the different treatment conditions (factors).</li>
+<li>Randomize subjects to the different treatment conditions.</li>
+<li>Perform the experiment.</li>
+<li>Measure the dependent variable.</li>
+</ol>
+<p>Note: Repeated measures means that we use the same subject for the different conditions. This is preferred to using different individuals because it reduces variance.</p>
+</section>
+<section id="state-the-hypothesis" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="state-the-hypothesis"><span class="header-section-number">3.3.3</span> State the hypothesis</h3>
+<p>We set up the research question, which is traduced to a research hypothesis which is finally stated as a null hypothesis.</p>
+<p>The Null hypothesis is usually stated as the contrary of what we would like to show. For example: there is no effect.</p>
+</section>
+<section id="measure-the-dependent-variable" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="measure-the-dependent-variable"><span class="header-section-number">3.3.4</span> Measure the dependent variable</h3>
+</section>
+<section id="exploratoty-analysis" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="exploratoty-analysis"><span class="header-section-number">3.3.5</span> Exploratoty analysis</h3>
+<ol type="1">
+<li>Boxplot of the dependent variable by factor: it gives an idea of the differences between groups.</li>
+</ol>
+</section>
+<section id="obtain-the-test-statistic" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="obtain-the-test-statistic"><span class="header-section-number">3.3.6</span> Obtain the test statistic</h3>
+<p>We use the F statistic using the data obtained from the experiment.</p>
+<p>The test statistic should be able to show how long the sample is far from the null hypothesis.</p>
+</section>
+<section id="perform-the-test" class="level3" data-number="3.3.7">
+<h3 data-number="3.3.7" class="anchored" data-anchor-id="perform-the-test"><span class="header-section-number">3.3.7</span> Perform the test</h3>
+<ul>
+<li>We obtain the sampling distribution of the test statistic under the null hypothesis. The distribution of the F statistic if data is normally distributed, and homoskedastic, the distribution is an F distribution with degrees of freedom equal to <span class="math inline">\(G-1, N- G\)</span>.</li>
+<li>We obtain the p-value which is equal to the probability that the F statistic is greater than the observed one under the Null hypothesis <span class="math inline">\(\mathbb{P}_{H_o}(F&gt;F_{obs})\)</span>. If the p-value is lower than the significance level, then we reject the null hypothesis.</li>
+</ul>
+</section>
+</section>
+<section id="recap-of-the-inference-procedure" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="recap-of-the-inference-procedure"><span class="header-section-number">3.4</span> Recap of the inference procedure</h2>
+<ol type="1">
+<li><p>Choose the significance level.</p></li>
+<li><p>Operationalise the research hypothesis in order to obtain the alternative hypothesis.</p></li>
+<li><p>Formulate the null hypothesis that corresponds to the alternative hypothesis.</p></li>
+<li><p>Define the test statistic.</p></li>
+<li><p>Obtain the sampling distribution of the test statistic under the null hypothesis.</p></li>
+<li><p>Find the p-value of the observed test statistic.</p></li>
+<li><p>Compare the p-value with the significance level chosen and make a decision.</p></li>
+<li><p>Interpretation of the result:</p></li>
+</ol>
+<ul>
+<li>Reject: “We reject the <span class="math inline">\(H_o\)</span>”</li>
+<li>No Reject: “We do not reject the <span class="math inline">\(H_o\)</span>”. We never say “We accept the <span class="math inline">\(H_o\)</span>”.</li>
+</ul>
+</section>
+<section id="two-types-of-errors" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="two-types-of-errors"><span class="header-section-number">3.5</span> Two types of errors</h2>
+<section id="type-i-error" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="type-i-error"><span class="header-section-number">3.5.1</span> Type I error</h3>
+<p>It is the probability of rejecting the null hypothesis when the null hypothesis is true. It is a False Positive.</p>
+<p>This type of error is more serious than Type II error, this is why we should protect the H_o.</p>
+<p><span class="math inline">\(\alpha = \mathbb{P}_{H_o}(\text{Reject H_o} | \text{H_o is true})\)</span></p>
+</section>
+<section id="type-ii-error" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="type-ii-error"><span class="header-section-number">3.5.2</span> Type II error</h3>
+<p>It is the probability of rejecting the alternative hypothesis when the alternative hypothesis is true.</p>
+<p><span class="math inline">\(\beta = \mathbb{P}_{H_a}(\text{No reject of the H_o} | \text{H_1 is true})\)</span></p>
+</section>
+<section id="power-of-the-test" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="power-of-the-test"><span class="header-section-number">3.5.3</span> Power of the test</h3>
+<p>The power of the test is the probability of rejection of the null hypothesis when the alternative hypothesis is true.</p>
+</section>
+</section>
+<section id="the-p-value" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="the-p-value"><span class="header-section-number">3.6</span> The p-value</h2>
+<p>The p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis. It is not the probability that the null hypothesis is true.</p>
+</section>
+<section id="sampling-distribution-vs-population-distribution" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="sampling-distribution-vs-population-distribution"><span class="header-section-number">3.7</span> Sampling distribution vs Population distribution</h2>
+<p>The sampling distribution is the probability distribution of a statistic that results from obtaining many samples of the same size obtained from the population.</p>
+<p>The population distribution is the distribution of the population.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-meier2022anova" class="csl-entry" role="listitem">
+Meier, Lukas. 2022. <em>ANOVA and Mixed Models: A Short Introduction Using r</em>. Chapman; Hall/CRC.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./summary.html" class="pagination-link" aria-label="summary.html">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">summary.html</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
