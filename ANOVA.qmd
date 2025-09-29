@@ -20,20 +20,25 @@ It is an ANOVA with only one factor with non repeated measures.
 
 The main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.
 
-The historical interpretation is that we decompose the variance into variance between groups and variance within groups: 
+#### Hystorical approach
 
-$$SS_{tot} = SS_{g} + SS_{resid}$$,
-where $SS_{tot}$ represents the total sum of squared residuals ($y_{ij}-m_{glob}$ with $m_{glob}$ equal to the global mean), $SS_g$ is equal to the sum of squared residuals between groups
-($m_g - m_{glob}$), and $SS_{resid}$ is equal to the sum of squared residuals within groups ($y_{ig}-m_g$).  Then, the F statistic is equal to $F = \frac{SS_g/(G-1)}{SS_{resid}/(N-G)}$. 
-The statistic $F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}$, where $S^2_{m_g}$ represents the estimated variance of the group means ($m_g$), and $\sum_gS^2_g/G$ represents the estimated intra-group variance, $G$ the total number of groups.
+The historical interpretation is that we decompose the variance into variance between groups and variance within groups:
 
-## Assumptions of Simple or Single Factor ANOVA
+$$SS_{tot} = SS_{g} + SS_{resid}$$, where $SS_{tot}$ represents the total sum of squared residuals ($y_{ij}-m_{glob}$ with $m_{glob}$ equal to the global mean), $SS_g$ is equal to the sum of squared residuals between groups ($m_g - m_{glob}$), and $SS_{resid}$ is equal to the sum of squared residuals within groups ($y_{ig}-m_g$). Then, the F statistic is equal to $F = \frac{SS_g/(G-1)}{SS_{resid}/(N-G)}$. The statistic $F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}$, where $S^2_{m_g}$ represents the estimated variance of the group means ($m_g$), and $\sum_gS^2_g/G$ represents the estimated intra-group variance, $G$ the total number of groups.
 
-## Roadmap for a Simple ANOVA without repeated measures
+#### Assumptions of Simple or Single Factor ANOVA
 
-### Confront the theory to an experiment.
+1.  Normal data
 
-### Experiment
+2.  Independent data
+
+3.  Homoskedasticity
+
+#### Roadmap for a Simple ANOVA without repeated measures
+
+##### 1. Confront the theory to an experiment.
+
+##### 2. Experiment
 
 1.  Define the different treatment conditions (factors).
 2.  Randomize subjects to the different treatment conditions.
@@ -42,30 +47,114 @@ The statistic $F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}$, where $S^2_{m_g}$ repre
 
 Note: Repeated measures means that we use the same subject for the different conditions. This is preferred to using different individuals because it reduces variance.
 
-### State the hypothesis
+##### 3. State the hypothesis
 
 We set up the research question, which is traduced to a research hypothesis which is finally stated as a null hypothesis.
 
 The Null hypothesis is usually stated as the contrary of what we would like to show. For example: there is no effect.
 
-### Measure the dependent variable
+##### 4. Measure the dependent variable
 
-### Exploratoty analysis
+##### 5. Exploratoty analysis
 
 1.  Boxplot of the dependent variable by factor: it gives an idea of the differences between groups.
 
-### Obtain the test statistic
+##### 6. Obtain the test statistic
 
 We use the F statistic using the data obtained from the experiment.
 
 The test statistic should be able to show how long the sample is far from the null hypothesis.
 
-### Perform the test
+##### 7. Perform the test
 
 -   We obtain the sampling distribution of the test statistic under the null hypothesis. The distribution of the F statistic if data is normally distributed, and homoskedastic, the distribution is an F distribution with degrees of freedom equal to $G-1, N- G$.
 -   We obtain the p-value which is equal to the probability that the F statistic is greater than the observed one under the Null hypothesis $\mathbb{P}_{H_o}(F>F_{obs})$. If the p-value is lower than the significance level, then we reject the null hypothesis.
 
-## Recap of the inference procedure
+#### The structural model of a simple ANOVA
+
+$y_{ij} = \mu + \gamma_j + E_{ij}, \quad i \in \{1, ..., n\}, \quad  j \in \{1, ..., a \},$
+
+where:
+
+-   $y_{ij}$ is the dependent variable of individual $i$ in group - $j$, or the response of individual $i$ to the $j$-th level of the factor.
+-   $\mu$ is the global expectation, or the general value of the response variable.
+-   $\gamma_j$ is the effect of the $j$-th level of the factor with respect to the global mean, or it is the deviation of the group $j$ with respect to the global mean.
+-   $E_{ij}$ is the error term.
+-   $\sum_j \gamma_j = 0$
+
+##### Assumptions
+
+1.  Gaussian error: $E_{ij} \sim N(0, \sigma^2)$.
+2.  Homoskedasticity (Homogeneous variances).
+
+##### Estimated model
+
+$$y_{ij} = m + g_j + r_{ij},$$
+
+where:
+
+-   $m$ is the global mean,
+-   $g_j$ is the estimated effect of the $j$-th level,
+-   $r_{ij}$ is the residual.
+
+##### Relationship with the historical approach
+
+In the historical approach, we decompose the response variable as follows:
+
+$$y_{ij} - m_{global} = (m_j - m_{global}) + (y_{ij} - m_{j})$$, which is equivalent to:
+
+$$ y_{ij} - m = g_j + r_{ij}$$,
+
+because $m_j = m + \gamma_j$.
+
+##### Multiple linear regression and simple ANOVA
+
+Consider the linear model:
+
+$$ y_{ij} = \beta_0 + \gamma_1 x_{1,ij} + \gamma_2 x_{2,ij} + ... + \gamma_{a-1} x_{a-1,ij} + E_{ij},$$
+
+with $x_{k,ij}$ a dummy variable taking value $1$ if $j = k$, - 1 if $k = a$, and 0 otherwise. $k \in \{1, ..., a-1 \}$.
+
+The F test with $H_o: \gamma_1 = \gamma_2 = ... \gamma_j = 0$ ($H_o: \text{No effect accross different levels}$), vs. $H_1: \exists  \gamma_l \neq \gamma _l'$ $(H_1: \text{At least two pairs of levels are different})$, coincides with the F test of a simple ANOVA.
+
+The variance of residuals, $\mathbb{E}[E_{ij}^2] = \mathbb{E}[SS_{resid}] = \sigma^2_{E}$. In addition, $\mathbb{E}[SS_{gr}] = \sigma^2_{E} + \sum_j \gamma_j/df$.
+
+Simple ANOVA is a special case of the multiple linear regression. 
+
+###### Assumptions and the residuals
+
+We remeber that the assumption is that $E_{ij} \sim N(0, \sigma^2)$.
+
+Then, we need to verify that the residuals follow a normal distribution and that they are heteroskedastik.  The asumption of independence is only guaranteed during the plan of the experiment. 
+
+##### Relationship between the t-test of two samples, simple ANOVA and Linear Regression
+
+The test t-Student with two samples is a special case of Simple ANOVA and Linear Regression. 
+
+We can show that the statistic F is equal to the square of the statistic t. 
+
+Same assumptions: normality of the groups, and homoskedasticity.
+
+##### Relationship between the t-test of one samples, and Linear Regression
+
+The test t-Student with one sample is a special case of a Linear Regression wihtout independent variable. 
+
+Same assumptions: normality of the data, and homoskedasticity.
+
+# Stages of the Analysis
+
+All analysis should comprise the following stages:
+
+1.  Exploratory analysis: identification, descriptive statistics.
+    1.  Detect the problems.
+    2.  Control of assumptions.
+    3.  Choice of the statistic.
+2.  Control analysis: diagnostics, control of assumptions.
+    1.  Residuals
+3.  Statistical analysis: inference.
+    1.  Test estimation
+
+# Bonus: Recap of the inference procedure
 
 1.  Choose the significance level.
 
@@ -81,39 +170,37 @@ The test statistic should be able to show how long the sample is far from the nu
 
 7.  Compare the p-value with the significance level chosen and make a decision.
 
-8. Interpretation of the result:
- 
- - Reject: "We reject the $H_o$" 
- - No Reject: "We do not reject the $H_o$".  We never say "We accept the $H_o$".
+8.  Interpretation of the result:
+
+-   Reject: "We reject the $H_o$"
+-   No Reject: "We do not reject the $H_o$". We never say "We accept the $H_o$".
 
 ## Two types of errors
 
 ### Type I error
 
-It is the probability of rejecting the null hypothesis when the null hypothesis is true.  It is a False Positive. 
+It is the probability of rejecting the null hypothesis when the null hypothesis is true. It is a False Positive.
 
-This type of error is more serious than Type II error, this is why we should protect the H_o. 
+This type of error is more serious than Type II error, this is why we should protect the H_o.
 
-$\alpha = \mathbb{P}_{H_o}(\text{Reject H_o} | \text{H_o is true})$
+$\alpha = \mathbb{P}_{H_o}(\text{Reject $H_o$} | \text{$H_o$ is true})$
 
 ### Type II error
 
-It is the probability of rejecting the alternative hypothesis when the alternative hypothesis is true. 
+It is the probability of rejecting the alternative hypothesis when the alternative hypothesis is true.
 
-$\beta = \mathbb{P}_{H_a}(\text{No reject of the H_o} | \text{H_1 is true})$
+$\beta = \mathbb{P}_{H_a}(\text{No reject of the $H_o$} | \text{$H_1$ is true})$
 
-### Power of the test
+## Power of the test
 
-The power of the test is the probability of rejection of the null hypothesis when the alternative hypothesis is true. 
+The power of the test is the probability of rejection of the null hypothesis when the alternative hypothesis is true.
 
-## The p-value 
+## The p-value
 
-The p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis.  It is not the probability that the null hypothesis is true. 
+The p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis. It is not the probability that the null hypothesis is true.
 
 ## Sampling distribution vs Population distribution
 
 The sampling distribution is the probability distribution of a statistic that results from obtaining many samples of the same size obtained from the population.
 
-The population distribution is the distribution of the population. 
-
-
+The population distribution is the distribution of the population.

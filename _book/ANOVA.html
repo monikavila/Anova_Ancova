@@ -199,26 +199,18 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#simple-anova" id="toc-simple-anova" class="nav-link" data-scroll-target="#simple-anova"><span class="header-section-number">3.1.1</span> Simple ANOVA</a></li>
   </ul></li>
-  <li><a href="#assumptions-of-simple-or-single-factor-anova" id="toc-assumptions-of-simple-or-single-factor-anova" class="nav-link" data-scroll-target="#assumptions-of-simple-or-single-factor-anova"><span class="header-section-number">3.2</span> Assumptions of Simple or Single Factor ANOVA</a></li>
-  <li><a href="#roadmap-for-a-simple-anova-without-repeated-measures" id="toc-roadmap-for-a-simple-anova-without-repeated-measures" class="nav-link" data-scroll-target="#roadmap-for-a-simple-anova-without-repeated-measures"><span class="header-section-number">3.3</span> Roadmap for a Simple ANOVA without repeated measures</a>
+  <li><a href="#stages-of-the-analysis" id="toc-stages-of-the-analysis" class="nav-link" data-scroll-target="#stages-of-the-analysis"><span class="header-section-number">4</span> Stages of the Analysis</a></li>
+  <li><a href="#bonus-recap-of-the-inference-procedure" id="toc-bonus-recap-of-the-inference-procedure" class="nav-link" data-scroll-target="#bonus-recap-of-the-inference-procedure"><span class="header-section-number">5</span> Bonus: Recap of the inference procedure</a>
   <ul class="collapse">
-  <li><a href="#confront-the-theory-to-an-experiment." id="toc-confront-the-theory-to-an-experiment." class="nav-link" data-scroll-target="#confront-the-theory-to-an-experiment."><span class="header-section-number">3.3.1</span> Confront the theory to an experiment.</a></li>
-  <li><a href="#experiment" id="toc-experiment" class="nav-link" data-scroll-target="#experiment"><span class="header-section-number">3.3.2</span> Experiment</a></li>
-  <li><a href="#state-the-hypothesis" id="toc-state-the-hypothesis" class="nav-link" data-scroll-target="#state-the-hypothesis"><span class="header-section-number">3.3.3</span> State the hypothesis</a></li>
-  <li><a href="#measure-the-dependent-variable" id="toc-measure-the-dependent-variable" class="nav-link" data-scroll-target="#measure-the-dependent-variable"><span class="header-section-number">3.3.4</span> Measure the dependent variable</a></li>
-  <li><a href="#exploratoty-analysis" id="toc-exploratoty-analysis" class="nav-link" data-scroll-target="#exploratoty-analysis"><span class="header-section-number">3.3.5</span> Exploratoty analysis</a></li>
-  <li><a href="#obtain-the-test-statistic" id="toc-obtain-the-test-statistic" class="nav-link" data-scroll-target="#obtain-the-test-statistic"><span class="header-section-number">3.3.6</span> Obtain the test statistic</a></li>
-  <li><a href="#perform-the-test" id="toc-perform-the-test" class="nav-link" data-scroll-target="#perform-the-test"><span class="header-section-number">3.3.7</span> Perform the test</a></li>
-  </ul></li>
-  <li><a href="#recap-of-the-inference-procedure" id="toc-recap-of-the-inference-procedure" class="nav-link" data-scroll-target="#recap-of-the-inference-procedure"><span class="header-section-number">3.4</span> Recap of the inference procedure</a></li>
-  <li><a href="#two-types-of-errors" id="toc-two-types-of-errors" class="nav-link" data-scroll-target="#two-types-of-errors"><span class="header-section-number">3.5</span> Two types of errors</a>
+  <li><a href="#two-types-of-errors" id="toc-two-types-of-errors" class="nav-link" data-scroll-target="#two-types-of-errors"><span class="header-section-number">5.1</span> Two types of errors</a>
   <ul class="collapse">
-  <li><a href="#type-i-error" id="toc-type-i-error" class="nav-link" data-scroll-target="#type-i-error"><span class="header-section-number">3.5.1</span> Type I error</a></li>
-  <li><a href="#type-ii-error" id="toc-type-ii-error" class="nav-link" data-scroll-target="#type-ii-error"><span class="header-section-number">3.5.2</span> Type II error</a></li>
-  <li><a href="#power-of-the-test" id="toc-power-of-the-test" class="nav-link" data-scroll-target="#power-of-the-test"><span class="header-section-number">3.5.3</span> Power of the test</a></li>
+  <li><a href="#type-i-error" id="toc-type-i-error" class="nav-link" data-scroll-target="#type-i-error"><span class="header-section-number">5.1.1</span> Type I error</a></li>
+  <li><a href="#type-ii-error" id="toc-type-ii-error" class="nav-link" data-scroll-target="#type-ii-error"><span class="header-section-number">5.1.2</span> Type II error</a></li>
   </ul></li>
-  <li><a href="#the-p-value" id="toc-the-p-value" class="nav-link" data-scroll-target="#the-p-value"><span class="header-section-number">3.6</span> The p-value</a></li>
-  <li><a href="#sampling-distribution-vs-population-distribution" id="toc-sampling-distribution-vs-population-distribution" class="nav-link" data-scroll-target="#sampling-distribution-vs-population-distribution"><span class="header-section-number">3.7</span> Sampling distribution vs Population distribution</a></li>
+  <li><a href="#power-of-the-test" id="toc-power-of-the-test" class="nav-link" data-scroll-target="#power-of-the-test"><span class="header-section-number">5.2</span> Power of the test</a></li>
+  <li><a href="#the-p-value" id="toc-the-p-value" class="nav-link" data-scroll-target="#the-p-value"><span class="header-section-number">5.3</span> The p-value</a></li>
+  <li><a href="#sampling-distribution-vs-population-distribution" id="toc-sampling-distribution-vs-population-distribution" class="nav-link" data-scroll-target="#sampling-distribution-vs-population-distribution"><span class="header-section-number">5.4</span> Sampling distribution vs Population distribution</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -256,20 +248,26 @@ window.Quarto = {
 <h3 data-number="3.1.1" class="anchored" data-anchor-id="simple-anova"><span class="header-section-number">3.1.1</span> Simple ANOVA</h3>
 <p>It is an ANOVA with only one factor with non repeated measures.</p>
 <p>The main idea of ANOVA is that we compare the means across groups taking into account the variability (the variance) within each group.</p>
+<section id="hystorical-approach" class="level4" data-number="3.1.1.1">
+<h4 data-number="3.1.1.1" class="anchored" data-anchor-id="hystorical-approach"><span class="header-section-number">3.1.1.1</span> Hystorical approach</h4>
 <p>The historical interpretation is that we decompose the variance into variance between groups and variance within groups:</p>
 <p><span class="math display">\[SS_{tot} = SS_{g} + SS_{resid}\]</span>, where <span class="math inline">\(SS_{tot}\)</span> represents the total sum of squared residuals (<span class="math inline">\(y_{ij}-m_{glob}\)</span> with <span class="math inline">\(m_{glob}\)</span> equal to the global mean), <span class="math inline">\(SS_g\)</span> is equal to the sum of squared residuals between groups (<span class="math inline">\(m_g - m_{glob}\)</span>), and <span class="math inline">\(SS_{resid}\)</span> is equal to the sum of squared residuals within groups (<span class="math inline">\(y_{ig}-m_g\)</span>). Then, the F statistic is equal to <span class="math inline">\(F = \frac{SS_g/(G-1)}{SS_{resid}/(N-G)}\)</span>. The statistic <span class="math inline">\(F = \frac{n * S^2_{m_g}}{\sum_gS^2_g/G}\)</span>, where <span class="math inline">\(S^2_{m_g}\)</span> represents the estimated variance of the group means (<span class="math inline">\(m_g\)</span>), and <span class="math inline">\(\sum_gS^2_g/G\)</span> represents the estimated intra-group variance, <span class="math inline">\(G\)</span> the total number of groups.</p>
 </section>
+<section id="assumptions-of-simple-or-single-factor-anova" class="level4" data-number="3.1.1.2">
+<h4 data-number="3.1.1.2" class="anchored" data-anchor-id="assumptions-of-simple-or-single-factor-anova"><span class="header-section-number">3.1.1.2</span> Assumptions of Simple or Single Factor ANOVA</h4>
+<ol type="1">
+<li><p>Normal data</p></li>
+<li><p>Independent data</p></li>
+<li><p>Homoskedasticity</p></li>
+</ol>
 </section>
-<section id="assumptions-of-simple-or-single-factor-anova" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="assumptions-of-simple-or-single-factor-anova"><span class="header-section-number">3.2</span> Assumptions of Simple or Single Factor ANOVA</h2>
+<section id="roadmap-for-a-simple-anova-without-repeated-measures" class="level4" data-number="3.1.1.3">
+<h4 data-number="3.1.1.3" class="anchored" data-anchor-id="roadmap-for-a-simple-anova-without-repeated-measures"><span class="header-section-number">3.1.1.3</span> Roadmap for a Simple ANOVA without repeated measures</h4>
+<section id="confront-the-theory-to-an-experiment." class="level5" data-number="3.1.1.3.1">
+<h5 data-number="3.1.1.3.1" class="anchored" data-anchor-id="confront-the-theory-to-an-experiment."><span class="header-section-number">3.1.1.3.1</span> 1. Confront the theory to an experiment.</h5>
 </section>
-<section id="roadmap-for-a-simple-anova-without-repeated-measures" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="roadmap-for-a-simple-anova-without-repeated-measures"><span class="header-section-number">3.3</span> Roadmap for a Simple ANOVA without repeated measures</h2>
-<section id="confront-the-theory-to-an-experiment." class="level3" data-number="3.3.1">
-<h3 data-number="3.3.1" class="anchored" data-anchor-id="confront-the-theory-to-an-experiment."><span class="header-section-number">3.3.1</span> Confront the theory to an experiment.</h3>
-</section>
-<section id="experiment" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="experiment"><span class="header-section-number">3.3.2</span> Experiment</h3>
+<section id="experiment" class="level5" data-number="3.1.1.3.2">
+<h5 data-number="3.1.1.3.2" class="anchored" data-anchor-id="experiment"><span class="header-section-number">3.1.1.3.2</span> 2. Experiment</h5>
 <ol type="1">
 <li>Define the different treatment conditions (factors).</li>
 <li>Randomize subjects to the different treatment conditions.</li>
@@ -278,35 +276,118 @@ window.Quarto = {
 </ol>
 <p>Note: Repeated measures means that we use the same subject for the different conditions. This is preferred to using different individuals because it reduces variance.</p>
 </section>
-<section id="state-the-hypothesis" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="state-the-hypothesis"><span class="header-section-number">3.3.3</span> State the hypothesis</h3>
+<section id="state-the-hypothesis" class="level5" data-number="3.1.1.3.3">
+<h5 data-number="3.1.1.3.3" class="anchored" data-anchor-id="state-the-hypothesis"><span class="header-section-number">3.1.1.3.3</span> 3. State the hypothesis</h5>
 <p>We set up the research question, which is traduced to a research hypothesis which is finally stated as a null hypothesis.</p>
 <p>The Null hypothesis is usually stated as the contrary of what we would like to show. For example: there is no effect.</p>
 </section>
-<section id="measure-the-dependent-variable" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="measure-the-dependent-variable"><span class="header-section-number">3.3.4</span> Measure the dependent variable</h3>
+<section id="measure-the-dependent-variable" class="level5" data-number="3.1.1.3.4">
+<h5 data-number="3.1.1.3.4" class="anchored" data-anchor-id="measure-the-dependent-variable"><span class="header-section-number">3.1.1.3.4</span> 4. Measure the dependent variable</h5>
 </section>
-<section id="exploratoty-analysis" class="level3" data-number="3.3.5">
-<h3 data-number="3.3.5" class="anchored" data-anchor-id="exploratoty-analysis"><span class="header-section-number">3.3.5</span> Exploratoty analysis</h3>
+<section id="exploratoty-analysis" class="level5" data-number="3.1.1.3.5">
+<h5 data-number="3.1.1.3.5" class="anchored" data-anchor-id="exploratoty-analysis"><span class="header-section-number">3.1.1.3.5</span> 5. Exploratoty analysis</h5>
 <ol type="1">
 <li>Boxplot of the dependent variable by factor: it gives an idea of the differences between groups.</li>
 </ol>
 </section>
-<section id="obtain-the-test-statistic" class="level3" data-number="3.3.6">
-<h3 data-number="3.3.6" class="anchored" data-anchor-id="obtain-the-test-statistic"><span class="header-section-number">3.3.6</span> Obtain the test statistic</h3>
+<section id="obtain-the-test-statistic" class="level5" data-number="3.1.1.3.6">
+<h5 data-number="3.1.1.3.6" class="anchored" data-anchor-id="obtain-the-test-statistic"><span class="header-section-number">3.1.1.3.6</span> 6. Obtain the test statistic</h5>
 <p>We use the F statistic using the data obtained from the experiment.</p>
 <p>The test statistic should be able to show how long the sample is far from the null hypothesis.</p>
 </section>
-<section id="perform-the-test" class="level3" data-number="3.3.7">
-<h3 data-number="3.3.7" class="anchored" data-anchor-id="perform-the-test"><span class="header-section-number">3.3.7</span> Perform the test</h3>
+<section id="perform-the-test" class="level5" data-number="3.1.1.3.7">
+<h5 data-number="3.1.1.3.7" class="anchored" data-anchor-id="perform-the-test"><span class="header-section-number">3.1.1.3.7</span> 7. Perform the test</h5>
 <ul>
 <li>We obtain the sampling distribution of the test statistic under the null hypothesis. The distribution of the F statistic if data is normally distributed, and homoskedastic, the distribution is an F distribution with degrees of freedom equal to <span class="math inline">\(G-1, N- G\)</span>.</li>
 <li>We obtain the p-value which is equal to the probability that the F statistic is greater than the observed one under the Null hypothesis <span class="math inline">\(\mathbb{P}_{H_o}(F&gt;F_{obs})\)</span>. If the p-value is lower than the significance level, then we reject the null hypothesis.</li>
 </ul>
 </section>
 </section>
-<section id="recap-of-the-inference-procedure" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="recap-of-the-inference-procedure"><span class="header-section-number">3.4</span> Recap of the inference procedure</h2>
+<section id="the-structural-model-of-a-simple-anova" class="level4" data-number="3.1.1.4">
+<h4 data-number="3.1.1.4" class="anchored" data-anchor-id="the-structural-model-of-a-simple-anova"><span class="header-section-number">3.1.1.4</span> The structural model of a simple ANOVA</h4>
+<p><span class="math inline">\(y_{ij} = \mu + \gamma_j + E_{ij}, \quad i \in \{1, ..., n\}, \quad  j \in \{1, ..., a \},\)</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(y_{ij}\)</span> is the dependent variable of individual <span class="math inline">\(i\)</span> in group - <span class="math inline">\(j\)</span>, or the response of individual <span class="math inline">\(i\)</span> to the <span class="math inline">\(j\)</span>-th level of the factor.</li>
+<li><span class="math inline">\(\mu\)</span> is the global expectation, or the general value of the response variable.</li>
+<li><span class="math inline">\(\gamma_j\)</span> is the effect of the <span class="math inline">\(j\)</span>-th level of the factor with respect to the global mean, or it is the deviation of the group <span class="math inline">\(j\)</span> with respect to the global mean.</li>
+<li><span class="math inline">\(E_{ij}\)</span> is the error term.</li>
+<li><span class="math inline">\(\sum_j \gamma_j = 0\)</span></li>
+</ul>
+<section id="assumptions" class="level5" data-number="3.1.1.4.1">
+<h5 data-number="3.1.1.4.1" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">3.1.1.4.1</span> Assumptions</h5>
+<ol type="1">
+<li>Gaussian error: <span class="math inline">\(E_{ij} \sim N(0, \sigma^2)\)</span>.</li>
+<li>Homoskedasticity (Homogeneous variances).</li>
+</ol>
+</section>
+<section id="estimated-model" class="level5" data-number="3.1.1.4.2">
+<h5 data-number="3.1.1.4.2" class="anchored" data-anchor-id="estimated-model"><span class="header-section-number">3.1.1.4.2</span> Estimated model</h5>
+<p><span class="math display">\[y_{ij} = m + g_j + r_{ij},\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(m\)</span> is the global mean,</li>
+<li><span class="math inline">\(g_j\)</span> is the estimated effect of the <span class="math inline">\(j\)</span>-th level,</li>
+<li><span class="math inline">\(r_{ij}\)</span> is the residual.</li>
+</ul>
+</section>
+<section id="relationship-with-the-historical-approach" class="level5" data-number="3.1.1.4.3">
+<h5 data-number="3.1.1.4.3" class="anchored" data-anchor-id="relationship-with-the-historical-approach"><span class="header-section-number">3.1.1.4.3</span> Relationship with the historical approach</h5>
+<p>In the historical approach, we decompose the response variable as follows:</p>
+<p><span class="math display">\[y_{ij} - m_{global} = (m_j - m_{global}) + (y_{ij} - m_{j})\]</span>, which is equivalent to:</p>
+<p><span class="math display">\[ y_{ij} - m = g_j + r_{ij}\]</span>,</p>
+<p>because <span class="math inline">\(m_j = m + \gamma_j\)</span>.</p>
+</section>
+<section id="multiple-linear-regression-and-simple-anova" class="level5" data-number="3.1.1.4.4">
+<h5 data-number="3.1.1.4.4" class="anchored" data-anchor-id="multiple-linear-regression-and-simple-anova"><span class="header-section-number">3.1.1.4.4</span> Multiple linear regression and simple ANOVA</h5>
+<p>Consider the linear model:</p>
+<p><span class="math display">\[ y_{ij} = \beta_0 + \gamma_1 x_{1,ij} + \gamma_2 x_{2,ij} + ... + \gamma_{a-1} x_{a-1,ij} + E_{ij},\]</span></p>
+<p>with <span class="math inline">\(x_{k,ij}\)</span> a dummy variable taking value <span class="math inline">\(1\)</span> if <span class="math inline">\(j = k\)</span>, - 1 if <span class="math inline">\(k = a\)</span>, and 0 otherwise. <span class="math inline">\(k \in \{1, ..., a-1 \}\)</span>.</p>
+<p>The F test with <span class="math inline">\(H_o: \gamma_1 = \gamma_2 = ... \gamma_j = 0\)</span> (<span class="math inline">\(H_o: \text{No effect accross different levels}\)</span>), vs.&nbsp;<span class="math inline">\(H_1: \exists  \gamma_l \neq \gamma _l'\)</span> <span class="math inline">\((H_1: \text{At least two pairs of levels are different})\)</span>, coincides with the F test of a simple ANOVA.</p>
+<p>The variance of residuals, <span class="math inline">\(\mathbb{E}[E_{ij}^2] = \mathbb{E}[SS_{resid}] = \sigma^2_{E}\)</span>. In addition, <span class="math inline">\(\mathbb{E}[SS_{gr}] = \sigma^2_{E} + \sum_j \gamma_j/df\)</span>.</p>
+<p>Simple ANOVA is a special case of the multiple linear regression.</p>
+<section id="assumptions-and-the-residuals" class="level6" data-number="3.1.1.4.4.1">
+<h6 data-number="3.1.1.4.4.1" class="anchored" data-anchor-id="assumptions-and-the-residuals"><span class="header-section-number">3.1.1.4.4.1</span> Assumptions and the residuals</h6>
+<p>We remeber that the assumption is that <span class="math inline">\(E_{ij} \sim N(0, \sigma^2)\)</span>.</p>
+<p>Then, we need to verify that the residuals follow a normal distribution and that they are heteroskedastik. The asumption of independence is only guaranteed during the plan of the experiment.</p>
+</section>
+</section>
+<section id="relationship-between-the-t-test-of-two-samples-simple-anova-and-linear-regression" class="level5" data-number="3.1.1.4.5">
+<h5 data-number="3.1.1.4.5" class="anchored" data-anchor-id="relationship-between-the-t-test-of-two-samples-simple-anova-and-linear-regression"><span class="header-section-number">3.1.1.4.5</span> Relationship between the t-test of two samples, simple ANOVA and Linear Regression</h5>
+<p>The test t-Student with two samples is a special case of Simple ANOVA and Linear Regression.</p>
+<p>We can show that the statistic F is equal to the square of the statistic t.</p>
+<p>Same assumptions: normality of the groups, and homoskedasticity.</p>
+</section>
+<section id="relationship-between-the-t-test-of-one-samples-and-linear-regression" class="level5" data-number="3.1.1.4.6">
+<h5 data-number="3.1.1.4.6" class="anchored" data-anchor-id="relationship-between-the-t-test-of-one-samples-and-linear-regression"><span class="header-section-number">3.1.1.4.6</span> Relationship between the t-test of one samples, and Linear Regression</h5>
+<p>The test t-Student with one sample is a special case of a Linear Regression wihtout independent variable.</p>
+<p>Same assumptions: normality of the data, and homoskedasticity.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="stages-of-the-analysis" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Stages of the Analysis</h1>
+<p>All analysis should comprise the following stages:</p>
+<ol type="1">
+<li>Exploratory analysis: identification, descriptive statistics.
+<ol type="1">
+<li>Detect the problems.</li>
+<li>Control of assumptions.</li>
+<li>Choice of the statistic.</li>
+</ol></li>
+<li>Control analysis: diagnostics, control of assumptions.
+<ol type="1">
+<li>Residuals</li>
+</ol></li>
+<li>Statistical analysis: inference.
+<ol type="1">
+<li>Test estimation</li>
+</ol></li>
+</ol>
+</section>
+<section id="bonus-recap-of-the-inference-procedure" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Bonus: Recap of the inference procedure</h1>
 <ol type="1">
 <li><p>Choose the significance level.</p></li>
 <li><p>Operationalise the research hypothesis in order to obtain the alternative hypothesis.</p></li>
@@ -321,31 +402,30 @@ window.Quarto = {
 <li>Reject: “We reject the <span class="math inline">\(H_o\)</span>”</li>
 <li>No Reject: “We do not reject the <span class="math inline">\(H_o\)</span>”. We never say “We accept the <span class="math inline">\(H_o\)</span>”.</li>
 </ul>
-</section>
-<section id="two-types-of-errors" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="two-types-of-errors"><span class="header-section-number">3.5</span> Two types of errors</h2>
-<section id="type-i-error" class="level3" data-number="3.5.1">
-<h3 data-number="3.5.1" class="anchored" data-anchor-id="type-i-error"><span class="header-section-number">3.5.1</span> Type I error</h3>
+<section id="two-types-of-errors" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="two-types-of-errors"><span class="header-section-number">5.1</span> Two types of errors</h2>
+<section id="type-i-error" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="type-i-error"><span class="header-section-number">5.1.1</span> Type I error</h3>
 <p>It is the probability of rejecting the null hypothesis when the null hypothesis is true. It is a False Positive.</p>
 <p>This type of error is more serious than Type II error, this is why we should protect the H_o.</p>
-<p><span class="math inline">\(\alpha = \mathbb{P}_{H_o}(\text{Reject H_o} | \text{H_o is true})\)</span></p>
+<p><span class="math inline">\(\alpha = \mathbb{P}_{H_o}(\text{Reject $H_o$} | \text{$H_o$ is true})\)</span></p>
 </section>
-<section id="type-ii-error" class="level3" data-number="3.5.2">
-<h3 data-number="3.5.2" class="anchored" data-anchor-id="type-ii-error"><span class="header-section-number">3.5.2</span> Type II error</h3>
+<section id="type-ii-error" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="type-ii-error"><span class="header-section-number">5.1.2</span> Type II error</h3>
 <p>It is the probability of rejecting the alternative hypothesis when the alternative hypothesis is true.</p>
-<p><span class="math inline">\(\beta = \mathbb{P}_{H_a}(\text{No reject of the H_o} | \text{H_1 is true})\)</span></p>
+<p><span class="math inline">\(\beta = \mathbb{P}_{H_a}(\text{No reject of the $H_o$} | \text{$H_1$ is true})\)</span></p>
 </section>
-<section id="power-of-the-test" class="level3" data-number="3.5.3">
-<h3 data-number="3.5.3" class="anchored" data-anchor-id="power-of-the-test"><span class="header-section-number">3.5.3</span> Power of the test</h3>
+</section>
+<section id="power-of-the-test" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="power-of-the-test"><span class="header-section-number">5.2</span> Power of the test</h2>
 <p>The power of the test is the probability of rejection of the null hypothesis when the alternative hypothesis is true.</p>
 </section>
-</section>
-<section id="the-p-value" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="the-p-value"><span class="header-section-number">3.6</span> The p-value</h2>
+<section id="the-p-value" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="the-p-value"><span class="header-section-number">5.3</span> The p-value</h2>
 <p>The p-value is the probability of obtaining a test statistic equal or larger than the observed one under the null hypothesis. It is not the probability that the null hypothesis is true.</p>
 </section>
-<section id="sampling-distribution-vs-population-distribution" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="sampling-distribution-vs-population-distribution"><span class="header-section-number">3.7</span> Sampling distribution vs Population distribution</h2>
+<section id="sampling-distribution-vs-population-distribution" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="sampling-distribution-vs-population-distribution"><span class="header-section-number">5.4</span> Sampling distribution vs Population distribution</h2>
 <p>The sampling distribution is the probability distribution of a statistic that results from obtaining many samples of the same size obtained from the population.</p>
 <p>The population distribution is the distribution of the population.</p>
 
@@ -355,6 +435,7 @@ window.Quarto = {
 Meier, Lukas. 2022. <em>ANOVA and Mixed Models: A Short Introduction Using r</em>. Chapman; Hall/CRC.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
